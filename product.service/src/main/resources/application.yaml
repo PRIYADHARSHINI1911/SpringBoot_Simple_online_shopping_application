@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/product_service
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
+    com.myprojects.product: DEBUG
+  
+ 
