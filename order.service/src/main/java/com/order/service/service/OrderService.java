@@ -3,6 +3,7 @@ package com.order.service.service;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.order.service.dto.OrderLineItemsDTO;
@@ -10,10 +11,16 @@ import com.order.service.dto.OrderRequest;
 import com.order.service.model.Order;
 import com.order.service.model.OrderLineItems;
 
-@Service
-public class OrderService {
+import lombok.RequiredArgsConstructor;
 
-	private void placeOrder(OrderRequest orderRequest) {
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+	
+	@Autowired
+	com.order.service.repository.OrderRepository orderRepository;
+
+	public void placeOrder(OrderRequest orderRequest) {
 		Order order = new Order();
 		order.setOrderNumber(UUID.randomUUID().toString());
 		
@@ -21,6 +28,8 @@ public class OrderService {
 				.stream()
 				.map(orderLineItemsDTO -> mapToDTO(orderLineItemsDTO))
 				.toList();
+		order.setOrderLineItemsList(orderLineItemsList);
+		orderRepository.save(order);
 		
 	}
 
@@ -31,4 +40,5 @@ public class OrderService {
 		orderLineItems.setPrice(orderLineItemsDTO.getPrice());
 		return orderLineItems;
 	}
+
 }
