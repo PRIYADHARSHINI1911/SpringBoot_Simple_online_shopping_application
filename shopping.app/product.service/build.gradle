@@ -1,7 +1,5 @@
 
 plugins {
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
     id 'java'
     id 'application'
 }
@@ -10,8 +8,8 @@ application {
     mainClassName = 'com.myprojects.product.service.Application'
 }
 
-bootJar {
-    mainClassName = 'com.myprojects.product.service.Application'
+repositories {
+    mavenCentral()
 }
 
 dependencies {
