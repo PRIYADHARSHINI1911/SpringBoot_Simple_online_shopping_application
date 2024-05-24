@@ -56,6 +56,7 @@ public class OrderService {
 	}
 
 	private OrderLineItems mapToDTO(OrderLineItemsDTO orderLineItemsDTO) {
+		log.debug("Mapping the products..");
 		OrderLineItems orderLineItems = new OrderLineItems();
 		orderLineItems.setQuantity(orderLineItemsDTO.getQuantity());
 		orderLineItems.setProductname(orderLineItemsDTO.getProductname());
